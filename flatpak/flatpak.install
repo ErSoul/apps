@@ -50,6 +50,11 @@ post_install() {
         echo -e "For more applications go to http://flatpak.org/apps.html \e[0m"
 
     fi
+    
+    getent passwd flatpak > /dev/null || useradd -c "User for flatpak system helper" -M -N -r -s /sbin/nologin flatpak
 }
 
+post_remove(){
+  userdel flatpak
+}
 
